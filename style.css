@@ -1,0 +1,219 @@
+:root {
+	--background-color: #161616;
+	--primary-color: #4493f8;
+	--secondary-color: #1b1c1e;
+	--text-color: #fff;
+	--link-color: #4493f8;
+	--border-color: #fff;
+	--error-color: #ff1e00;
+	--success-color: #00ff6f;
+	--code-background: #1e1e1e;
+	--code-text: #cccccc;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+a:link {
+	color: var(--link-color);
+	text-decoration: none;
+}
+a:visited {
+	color: var(--link-color);
+	text-decoration: none;
+}
+a:hover {
+	color: var(--link-color);
+	text-decoration: underline;
+	text-decoration-color: var(--link-color);
+}
+a:active {
+	color: var(--link-color);
+	text-decoration: underline;
+	text-decoration-color: var(--link-color);
+}
+
+body {
+	font-family: "Inter";
+	font-weight: 500;
+	font-size: 16px;
+	color: var(--text-color);
+	background-color: var(--background-color);
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+	height: 100vh;
+	padding: 30px;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	max-width: 400px;
+	gap: 20px;
+}
+
+h1 a {
+	color: inherit !important;
+}
+
+h1 {
+	color: var(--primary-color);
+	line-height: 1;
+	font-size: 32px;
+	text-align: center;
+	width: auto;
+	font-weight: 700;
+}
+h2 {
+	font-size: 18px;
+	color: var(--text-color);
+	font-weight: 500;
+}
+p {
+	line-height: 1.6;
+	text-align: center;
+}
+
+.drag-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: 150ms ease-out;
+  z-index: 100;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  background: rgba(0, 0, 0, 0.5);
+  font-size: 18px;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+.drag-overlay.visible {
+	opacity: 1;
+}
+
+.inputArea {
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	border: 1px solid var(--border-color);
+	border-radius: 18px;
+	text-align: center;
+	background-color: var(--secondary-color);
+}
+.inputArea label {
+	display: block;
+	font-weight: 500;
+}
+
+.fileInput {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px;
+	border: 1px solid var(--border-color);
+	border-radius: 8px;
+	background-color: var(--background-color);
+	width: 100%;
+	transition: 100ms ease-out
+}
+.fileName {
+	padding: 8px 16px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: rgba(255, 255, 255, 0.7)
+}
+.fileButton {
+	background: var(--secondary-color);
+	padding: 8px 16px;
+	box-shadow: inset 0 0 0 1px var(--border-color);
+	border-radius: 4px;
+	color: var(--text-color);
+	cursor: pointer;
+	transition: 0.2s cubic-bezier(0, 0.7, 0.3, 1);
+}
+.fileButton:hover {
+	background: var(--primary-color);
+	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0);
+}
+input[type="file"] {
+	display: none;
+}
+
+.outputArea {
+	display: none;
+	flex-direction: column;
+	gap: 10px;
+	flex: 1 1 0;
+	min-height: 0;
+}
+.codeContainer {
+	position: relative;
+	flex: 1 1 0;
+	min-height: 0;
+}
+pre {
+	display: flex;
+	height: 100%;
+}
+code {
+	display: block;
+	background-color: var(--code-background);
+	color: var(--code-text);
+	padding: 20px;
+	border-radius: 5px;
+	overflow-x: auto;
+	white-space: pre;
+	font-family: "Fira Mono", monospace;
+	font-weight: 700;
+	font-size: 12px;
+	line-height: 1.5;
+	tab-size: 4;
+	height: 100%;
+}
+
+#copyButton {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background-color: rgba(255, 255, 255, 0.1);
+	color: var(--code-text);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	padding: 5px 8px;
+	border-radius: 4px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	transition: background-color 0.2s cubic-bezier(0, 0.7, 0.3, 1);
+}
+#copyButton:hover {
+	background-color: rgba(255, 255, 255, 0.2);
+}
+#copyButton svg {
+	vertical-align: middle;
+}
+
+.status {
+	padding: 16px;
+	border-radius: 18px;
+	text-align: center;
+	font-size: 18px;
+	font-weight: 700;
+}
+.status.error {
+	background-color: var(--error-color);
+}
+.status.success {
+	background-color: var(--success-color);
+}
